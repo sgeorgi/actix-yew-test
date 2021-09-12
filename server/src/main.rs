@@ -1,11 +1,16 @@
 use actix_web::{App, get, HttpResponse, HttpServer, Responder, web};
+use serde::{Deserialize, Serialize};
 
-mod messages;
+#[derive(Deserialize, Serialize)]
+pub struct Message {
+    pub title: String,
+    pub body: String,
+}
 
 #[get("/hello")]
 async fn hello() -> impl Responder {
     let domain_msg = domain::generate_message();
-    let msg = messages::Message {
+    let msg = Message {
         title: domain_msg.title,
         body: domain_msg.body,
     };
