@@ -25,7 +25,7 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new()
         .service(web::scope("/api/v1").service(hello))
         .service(fs::Files::new("/", "static").index_file("index.html"))
-    ).bind("127.0.0.1:9000")?
+    ).bind("0.0.0.0:9000")?
         .run()
         .await
 }
