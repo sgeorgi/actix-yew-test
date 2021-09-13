@@ -1,0 +1,5 @@
+[serve]
+port = 8080
+
+[[proxy]]
+backend = "ws://localhost:9000/api/v1"

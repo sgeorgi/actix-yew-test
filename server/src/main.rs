@@ -20,7 +20,7 @@ async fn hello() -> impl Responder {
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| App::new().service(web::scope("/api/v1").service(hello)))
-        .bind("127.0.0.1:8080")?
+        .bind("127.0.0.1:9000")?
         .run()
         .await
 }
