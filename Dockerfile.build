@@ -1,0 +1,28 @@
+FROM ghcr.io/rust-lang/rust:nightly-alpine as builder
+
+RUN cargo install trunk
+RUN rustup target add wasm32-unknown-unknown
+
+WORKDIR ./
+RUN mkdir -p server/src
+RUN mkdir -p domain/src
+RUN mkdir -p web/src
+ADD ./Cargo.lock ./
+ADD ./Cargo.toml ./
+
+ADD ./server/Cargo.toml ./server/
+RUN echo "fn main() {}" > server/src/main.rs
+
+ADD ./domain/Cargo.toml ./domain/
+RUN echo "pub fn lib() {}" > domain/src/lib.rs
+
+ADD ./web/Cargo.toml ./web/
+RUN echo "fn main() {}" > web/src/main.rs
+
+RUN cargo fetch
+RUN rm domain/src/lib.rs
+
+ADD ./server/src ./server/src
+ADD ./domain/src ./domain/src
+ADD ./web/src ./web/src
+RUN cargo build --release
