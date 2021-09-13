@@ -1,3 +1,4 @@
 /target
+/server/static
 /web/dist
 .idea
