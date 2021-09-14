@@ -14,5 +14,5 @@
 
 ## Build
 
-Run `build.sh` in the root-directory to compile a single `server`
-binary including the static output of compiled `web`, and package it into a docker container
+Run `build_docker.sh` in the root-directory to create a single `server`-docker image including the static output of
+compiled `web`
