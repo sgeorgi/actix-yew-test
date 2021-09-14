@@ -14,7 +14,8 @@ ADD ./server/Cargo.toml server/
 RUN echo "fn main() {}" > server/src/main.rs
 ADD ./web/Cargo.toml web/
 RUN echo "fn main() {}" > web/src/main.rs
-RUN cargo fetch
+RUN cargo build --release
+RUN rm -Rf target/release/deps/server-*
 
 ADD ./server/src server/src
 ADD ./web web
