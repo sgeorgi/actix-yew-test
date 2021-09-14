@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 yew = "0.18"
+serde = "1.0.130"
+anyhow = "1.0.44"
