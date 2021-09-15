@@ -22,10 +22,12 @@ async fn hello() -> impl Responder {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| App::new()
-        .service(web::scope("/api/v1").service(hello))
-        .service(fs::Files::new("/", "static").index_file("index.html"))
-    ).bind("0.0.0.0:9000")?
+    HttpServer::new(|| {
+        App::new()
+            .service(web::scope("/api/v1").service(hello))
+            .service(fs::Files::new("/", "static").index_file("index.html"))
+    })
+        .bind("0.0.0.0:9000")?
         .run()
         .await
 }

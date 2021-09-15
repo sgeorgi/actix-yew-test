@@ -1,4 +1,5 @@
 use yew::prelude::*;
+
 use crate::components::MessageFetchService;
 
 pub struct Container {}
@@ -28,5 +29,3 @@ impl Component for Container {
         };
     }
 }
-
-
