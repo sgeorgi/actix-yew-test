@@ -41,7 +41,7 @@ impl MessageFetchService {
             }
             None => {
                 return html! {
-                     <button type="button" class=classes!("bg-red-100", "ring-4", "rounded", "ml-auto") onclick=self.link.callback(|_| Msg::GetMessage)>
+                     <button type="button" class=classes!("bg-blue-100", "ring-4", "rounded", "ml-auto") onclick=self.link.callback(|_| Msg::GetMessage)>
                          { "Fetch message from server" }
                      </button>
                 };
