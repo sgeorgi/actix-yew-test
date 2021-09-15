@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build -t actix-web-test -f Dockerfile .
+docker build -t actix-yew-test -f Dockerfile .
