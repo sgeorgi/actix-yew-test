@@ -31,10 +31,13 @@ RUN cargo build --release --bin server
 
 FROM compiler as compiler_web
 WORKDIR ${BUILD}
+RUN apt update && apt install nodejs npm -y
+RUN npm install -g tailwindcss
 RUN cargo build --release --bin web
 RUN rm -Rf target/release/deps/web-*
-ADD ./web/src web/src
-ADD ./web/index.html web/
+ADD ./web ./web
+RUN rm -Rf ./web/dist
+RUN cd web && NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify
 RUN cd web  && trunk build --release
 
 
